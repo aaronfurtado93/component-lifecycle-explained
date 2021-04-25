@@ -1,0 +1,16 @@
+<p>This is inside example-parent</p>
+<p>This is content of the parent!</p>
+<p>Parent has total of '{{children.length}}' children!</p>
+<input [(ngModel)]="childName" #childNameInputControl="ngModel" [required]="true"/>
+<button (click)="createChild()" [disabled]="childNameInputControl.invalid">Create Child</button>
+<ul>
+  <li *ngFor="let child of children">
+    <app-example-child [data]="child" (deleteChildRequested)="deleteChild($event)"></app-example-child>
+  </li>
+</ul>
+
+<pre #totalChildren></pre>
+
+<button [disabled]="children?.length === 0" #deleteAllChildrenButton>
+  Delete All {{children?.length > 0 ? children.length : ''}}
+</button>
